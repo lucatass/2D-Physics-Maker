@@ -2,14 +2,17 @@ import React, { useState } from 'react';
 import './Settings.css';
 
 export default function Settings() {
+  // Declaramos los estados iniciales para las variables de la simulación
   const [gravity, setGravity] = useState(9.81);
   const [friction, setFriction] = useState(0.95);
   const [elasticity, setElasticity] = useState(0.7);
   const [numBalls, setNumBalls] = useState(1);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
+  // Función que se ejecuta cuando se envía el formulario
+  const handleSubmit = (e) => { 
+    e.preventDefault(); // Prevenimos el comportamiento por defecto del formulario (recargar la página)
+    const formData = new FormData(e.currentTarget); // Obtenemos los datos del formulario
+    // Actualizamos los estados con los valores del formulario
     setGravity(parseFloat(formData.get('gravity')));
     setFriction(parseFloat(formData.get('friction')));
     setElasticity(parseFloat(formData.get('elasticity')));
