@@ -1,0 +1,129 @@
+.container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    height: 100vh;
+    width: 100%;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    margin-left: 10px; ;
+    border-radius: 10px;
+    border: 1px solid #00eeff93;
+    box-shadow: 0 0 0 rgba(0, 238, 255, 0);
+    transition: box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
+  }
+  
+  form:hover {
+    box-shadow: 0 0 10px #00eeff;
+    border: #00eeff solid 1px;
+  }
+  
+  form:focus {
+    outline: none;
+    border: #00eeff solid 1px;
+    box-shadow: 0 0 10px rgba(0, 238, 255, 0.5);
+  }
+  
+  label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  input[type="number"] {
+    width: 100px;
+    height:11px;
+    margin-left: 10px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 14px;
+    color: #fff;
+    border: transparent solid 1px;
+  }
+  input[type="number"]:hover{
+    border: 1px solid #00eeff;
+  }
+  input[type="number"]:focus {
+    outline: none;
+    border: 1px solid #00eeff;
+    box-shadow: 0 0 10px rgba(0, 238, 255, 0.5);
+  }
+  
+  button[type="submit"] {
+    background-color: #00eeff;
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
+    position: relative;
+    overflow: hidden; /* To make sure the click effect is confined within the button */
+  }
+  
+  button[type="submit"]:hover {
+    box-shadow: 0px 0px 5px #00eeff;
+  }
+  
+  button[type="submit"]:active {
+    transform: translateY(2px);
+    box-shadow: none;
+  }
+  
+  button[type="submit"]:active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 4px 10px 4px rgba(255, 255, 255, 0.8);
+    animation: click-effect 0.3s ease-in-out;
+  }
+  
+  @keyframes click-effect {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.2);
+      opacity: 0;
+    }
+  }
+  
+  .info-box {
+    flex-grow: 1!;
+    width: 850px;
+    height: 550px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #ff990093;
+    box-shadow: 0 0 0 rgba(0, 238, 255, 0);
+    transition: box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
+  }
+  .info-box:hover {
+    box-shadow: 0 0 5px #ff9900;
+    border: #ff9900 solid 1px;
+  }
+  
+  h2 {
+    margin-top: 0;
+  }
+  
+  p {
+    margin: 5px 0;
+    color: #fff;
+  }
+  
