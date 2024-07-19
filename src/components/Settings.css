@@ -41,6 +41,7 @@ input[type="number"] {
   width: 100px;
   height: 11px;
   margin-left: 10px;
+  font-size: 14px !important;
   background-color: rgba(255, 255, 255, 0.3);
   border: none;
   border-radius: 5px;
@@ -48,6 +49,7 @@ input[type="number"] {
   font-size: 14px;
   color: #fff;
   border: transparent solid 1px;
+  transition: all 0.25s ease-in-out;
 }
 
 input[type="number"]:hover {
@@ -57,11 +59,11 @@ input[type="number"]:hover {
 input[type="number"]:focus {
   outline: none;
   border: 1px solid #00eeff;
+  font-size: 16px!important;
   box-shadow: 0 0 10px rgba(0, 238, 255, 0.5);
-  padding: 7px;
-  transition: all 0.1s ease-in-out;
+  width: 150px;
+  transition: all 0.25s ease-in-out;
 }
-
 button[type="submit"] {
   background-color: #00eeff;
   color: rgb(0, 0, 0);
@@ -72,6 +74,8 @@ button[type="submit"] {
   cursor: pointer;
   position: relative;
   overflow: hidden; /* To make sure the click effect is confined within the button */
+  transition: all 0.25s ease-in-out;
+
 }
 
 button[type="submit"]:hover {

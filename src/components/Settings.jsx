@@ -1,23 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import buttonSubmit from "../assets/buttonSubmit.mp3";
+import inputSound from "../assets/inputZoom.wav";
 import './Settings.css';
 
 export default function Settings() {
-  // Declaramos los estados iniciales para las variables de la simulación
   const [gravity, setGravity] = useState(9.81);
   const [friction, setFriction] = useState(0.95);
   const [elasticity, setElasticity] = useState(0.7);
   const [numBalls, setNumBalls] = useState(1);
+  const [buttonSubmitAudio, setButtonSubmitAudio] = useState(null);
+  const [inputAudio, setInputAudio] = useState(null);
 
-  // Función que se ejecuta cuando se envía el formulario
-  const handleSubmit = (e) => { 
-    e.preventDefault(); // Prevenimos el comportamiento por defecto del formulario (recargar la página)
-    const formData = new FormData(e.currentTarget); // Obtenemos los datos del formulario
-    // Actualizamos los estados con los valores del formulario
+  useEffect(() => {
+    // Preload audio files
+    const buttonSubmitAudio = new Audio(buttonSubmit);
+    const inputAudio = new Audio(inputSound);
+    setButtonSubmitAudio(buttonSubmitAudio);
+    setInputAudio(inputAudio);
+  }, []);
+
+  function playSound(audio) {
+    if (audio) {
+      audio.currentTime = 0;
+      audio.play();
+    }
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
     setGravity(parseFloat(formData.get('gravity')));
     setFriction(parseFloat(formData.get('friction')));
     setElasticity(parseFloat(formData.get('elasticity')));
     setNumBalls(parseInt(formData.get('numBalls'), 10));
-  };
+  }
 
   return (
     <div className="container">
@@ -25,6 +41,7 @@ export default function Settings() {
         <label>
           Gravity:
           <input
+            onMouseDown={() => playSound(inputAudio)}
             type="number"
             name="gravity"
             value={gravity}
@@ -35,6 +52,7 @@ export default function Settings() {
         <label>
           Friction:
           <input
+            onMouseDown={() => playSound(inputAudio)}
             type="number"
             name="friction"
             value={friction}
@@ -45,6 +63,7 @@ export default function Settings() {
         <label>
           Elasticity:
           <input
+            onMouseDown={() => playSound(inputAudio)}
             type="number"
             name="elasticity"
             value={elasticity}
@@ -55,13 +74,14 @@ export default function Settings() {
         <label>
           Number of balls:
           <input
+            onMouseDown={() => playSound(inputAudio)}
             type="number"
             name="numBalls"
             value={numBalls}
             onChange={(e) => setNumBalls(parseInt(e.target.value, 10))}
           />
         </label>
-        <button type="submit">Submit</button>
+        <button onMouseDown={() => playSound(buttonSubmitAudio)} type="submit">Submit</button>
       </form>
       <div className="info-box">
         <h2>Simulation Info</h2>
