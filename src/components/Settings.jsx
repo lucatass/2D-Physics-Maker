@@ -83,13 +83,6 @@ export default function Settings() {
         </label>
         <button onMouseDown={() => playSound(buttonSubmitAudio)} type="submit">Submit</button>
       </form>
-      <div className="info-box">
-        <h2>Simulation Info</h2>
-        <p>Gravity: {gravity}</p>
-        <p>Friction: {friction}</p>
-        <p>Elasticity: {elasticity}</p>
-        <p>Number of balls: {numBalls}</p>
-      </div>
     </div>
   );
 }
