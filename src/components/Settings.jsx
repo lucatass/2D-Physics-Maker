@@ -1,18 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import buttonSubmit from "../assets/buttonSubmit.mp3";
 import inputSound from "../assets/inputZoom.wav";
 import './Settings.css';
 
-export default function Settings() {
-  const [gravity, setGravity] = useState(9.81);
-  const [friction, setFriction] = useState(0.95);
-  const [elasticity, setElasticity] = useState(0.7);
-  const [numBalls, setNumBalls] = useState(1);
+const Settings = ({ size, setSize, positionX, setPositionX, positionY, setPositionY }) => {
   const [buttonSubmitAudio, setButtonSubmitAudio] = useState(null);
   const [inputAudio, setInputAudio] = useState(null);
 
   useEffect(() => {
-    // Preload audio files
+    // Pre-carga de archivos de audio
     const buttonSubmitAudio = new Audio(buttonSubmit);
     const inputAudio = new Audio(inputSound);
     setButtonSubmitAudio(buttonSubmitAudio);
@@ -29,60 +25,56 @@ export default function Settings() {
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    setGravity(parseFloat(formData.get('gravity')));
-    setFriction(parseFloat(formData.get('friction')));
-    setElasticity(parseFloat(formData.get('elasticity')));
-    setNumBalls(parseInt(formData.get('numBalls'), 10));
+
+    const newSize = parseInt(formData.get('size'), 10);
+    const newPositionX = parseInt(formData.get('positionX'), 10);
+    const newPositionY = parseInt(formData.get('positionY'), 10);
+
+    setSize(newSize);
+    setPositionX(newPositionX);
+    setPositionY(newPositionY);
   }
 
   return (
     <div className="container">
       <form onSubmit={handleSubmit}>
         <label>
-          Gravity:
+          Tamaño:
           <input
             onMouseDown={() => playSound(inputAudio)}
             type="number"
-            name="gravity"
-            value={gravity}
-            onChange={(e) => setGravity(parseFloat(e.target.value))}
+            name="size"
+            value={size}
+            onChange={(e) => setSize(parseInt(e.target.value))}
           />
         </label>
         <br />
         <label>
-          Friction:
+          Posición X:
           <input
             onMouseDown={() => playSound(inputAudio)}
             type="number"
-            name="friction"
-            value={friction}
-            onChange={(e) => setFriction(parseFloat(e.target.value))}
+            name="positionX"
+            value={positionX}
+            onChange={(e) => setPositionX(parseInt(e.target.value))}
           />
         </label>
         <br />
         <label>
-          Elasticity:
+          Posición Y:
           <input
             onMouseDown={() => playSound(inputAudio)}
             type="number"
-            name="elasticity"
-            value={elasticity}
-            onChange={(e) => setElasticity(parseFloat(e.target.value))}
+            name="positionY"
+            value={positionY}
+            onChange={(e) => setPositionY(parseInt(e.target.value))}
           />
         </label>
         <br />
-        <label>
-          Number of balls:
-          <input
-            onMouseDown={() => playSound(inputAudio)}
-            type="number"
-            name="numBalls"
-            value={numBalls}
-            onChange={(e) => setNumBalls(parseInt(e.target.value, 10))}
-          />
-        </label>
         <button onMouseDown={() => playSound(buttonSubmitAudio)} type="submit">Submit</button>
       </form>
     </div>
   );
-}
+};
+
+export default Settings;
